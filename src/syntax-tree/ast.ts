@@ -33,7 +33,7 @@ import {
     TYPE_MISMATCH_ANY,
     TYPE_MISMATCH_EXPR_DRAFT_MODE_STR,
     TYPE_MISMATCH_IN_HOLE_DRAFT_MODE_STR,
-    UnaryOperator,
+    UnaryOperator
 } from "./consts";
 import { Module } from "./module";
 import { Reference, Scope } from "./scope";
@@ -3143,7 +3143,7 @@ export class BinaryOperatorExpr extends Expression {
             if (leftOperand.returns === DataType.Any) {
                 module.openDraftMode(
                     leftOperand,
-                    TYPE_MISMATCH_ANY(this.typeOfHoles[this.leftOperandIndex], leftOperand.returns),
+                    TYPE_MISMATCH_ANY([rightOperand.returns], leftOperand.returns),
                     [
                         new IgnoreConversionRecord("", null, null, "", null, Tooltip.IgnoreWarning).getConversionButton(
                             "",
@@ -3188,7 +3188,7 @@ export class BinaryOperatorExpr extends Expression {
             if (rightOperand.returns === DataType.Any) {
                 module.openDraftMode(
                     rightOperand,
-                    TYPE_MISMATCH_ANY(this.typeOfHoles[this.leftOperandIndex], rightOperand.returns),
+                    TYPE_MISMATCH_ANY([leftOperand.returns], rightOperand.returns),
                     [
                         new IgnoreConversionRecord("", null, null, "", null, Tooltip.IgnoreWarning).getConversionButton(
                             "",
